@@ -133,11 +133,13 @@ code {
     border-radius: 4px;
     padding: 15px;
     margin-top: 20px;
+    overflow: hidden;
 }
 
 .output-text {
     white-space: pre-wrap;
     line-height: 1.4;
+    overflow: hidden;
 }
 
 .wrapper-pic {
