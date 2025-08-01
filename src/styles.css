@@ -1,1 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+
+
+:root {
+    --terminal-bg: #000;
+    --terminal-text: #0f0;
+    --terminal-prompt: #4da6ff;
+    --terminal-error: #f33;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: black;
+}

@@ -1,0 +1,95 @@
+<div class="container">
+    <div class="terminal-container">
+        <div class="terminal-header">
+            <h2 class="fw-bold">Bun Sengtri</h2>
+            <p class="fw-medium"><span>
+                    Web Developer
+                </span>
+            </p>
+        </div>
+        <div class="row wraper-terminal">
+            <div class="col-lg-5 col-12 wraper-terminal d-lg-flex d-none">
+                <div class="wraper-termina p-4 ">
+                    <div class="wrapper-pic m-auto">
+                        <!-- <video src="/img/Ktri.MOV" #hoverVideo muted playsinline preload="metadata"
+                            (mouseenter)="playVideo()" (mouseleave)="pauseVideo()"
+                            style="width: 100%; height: auto; object-fit: cover; cursor: pointer;">
+                        </video> -->
+                        <img src="/img/pro.JPG" alt="" class="w-100">
+
+                    </div>
+                    <div class="wrapper-info text-center">
+                        <h2 class="fw-bolder mt-2">Bun Sengtri</h2>
+                        <p class="nameHeader">A Software Developer Who Build Innovative
+                            Solution with Code and Creativity. </p>
+                        <div class="wrapper-socail mt-2 m-auto text-center">
+                            <ul class="example-2">
+                                @for (data of ListSocail; track $index) {
+                                <li class="icon-content">
+                                    <a href={{data.link}}>
+                                        <div class="filled"></div>
+                                        <i class={{data.i}}></i>
+                                    </a>
+                                    <div class="tooltip">{{data.txt}}</div>
+                                </li>
+                                <!-- <a href={{data.link}} class="socail"><i class={{data.i}}></i></a> -->
+                                }
+                            </ul>
+                            <!-- From Uiverse.io by wilsondesouza -->
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-7 col-12">
+                <div class="terminal-body">
+                    <div class="wrapper-text">
+                        <p class="nameHeader">bunsengtri&#64;portfolio:~$ <span>welcome</span></p>
+                        <p class="text-white m-1">Hi, I'm Bun Sengtri, a Lazy Developer</p>
+                    </div>
+                    <div class="input-section">
+                        <p class="nameHeader">bunsengtri&#64;portfolio:~$&nbsp;</p>
+                        <input type="text" autofocus [(ngModel)]="userInput" (input)="onInputChange()"
+                            (keydown.enter)="executeCommand()" placeholder="Type a command..." class="command-input"
+                            #commandInput>
+                    </div>
+
+
+                    <!-- Command Suggestions -->
+                    @if (userInput.length >0 && suggestions.length ==0 ) { <h4
+                        class="animate__animated animate__shakeX errorFound">{{commnadNotfound()}}
+                    </h4>
+                    }
+                    @if (suggestions.length > 0 && userInput.length > 0) {
+                    <div class="suggestions animate__animated animate__slideInUp">
+                        <h4>Available Commands:</h4>
+                        <div class="suggestion-item" *ngFor="let cmd of suggestions; let i = index"
+                            (click)="selectCommand(cmd)" [style.animation-delay]="(i * 100) + 'ms'">
+                            <strong>{{cmd.name}}</strong> - {{cmd.description}}
+                        </div>
+                    </div>
+                    }@else {
+
+                    }
+
+                    <!-- Command Details -->
+                    <div class="command-details fade-in" *ngIf="selectedCommand">
+                        <h3>{{selectedCommand.name}}</h3>
+                        <p><strong>Description:</strong> {{selectedCommand.description}}</p>
+                        <p><strong>Usage:</strong> <code>{{selectedCommand.usage}}</code></p>
+                        <p><strong>Example:</strong> <code>{{selectedCommand.example}}</code></p>
+                    </div>
+                    <!-- Output Area -->
+                    <div class="output fade-in" *ngIf="displayedOutput || isTyping">
+                        <div class="output-text" [class.typing]="isTyping">
+                            {{displayedOutput}}
+                            <span class="cursor" *ngIf="isTyping">|</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
