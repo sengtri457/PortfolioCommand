@@ -1,9 +1,9 @@
-<div class="container">
+<div class="container-fluid">
     <div class="terminal-container">
         <div class="terminal-header">
             <h2 class="fw-bold">Bun Sengtri</h2>
             <p class="fw-medium"><span>
-                    Web Developer
+                    Software Developer
                 </span>
             </p>
         </div>
@@ -16,10 +16,9 @@
                             style="width: 100%; height: auto; object-fit: cover; cursor: pointer;">
                         </video> -->
                         <img src="/img/pro.JPG" alt="" class="w-100">
-
                     </div>
                     <div class="wrapper-info text-center">
-                        <h2 class="fw-bolder mt-2">Bun Sengtri</h2>
+                        <h2 class="fw-bolder mt-2">Call: Ktri</h2>
                         <p class="nameHeader">A Software Developer Who Build Innovative
                             Solution with Code and Creativity. </p>
                         <div class="wrapper-socail mt-2 m-auto text-center">
@@ -32,30 +31,29 @@
                                     </a>
                                     <div class="tooltip">{{data.txt}}</div>
                                 </li>
-                                <!-- <a href={{data.link}} class="socail"><i class={{data.i}}></i></a> -->
+
                                 }
                             </ul>
-                            <!-- From Uiverse.io by wilsondesouza -->
-
-
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-lg-7 col-12">
                 <div class="terminal-body">
+                    <div class="command-provider">
+                        <span>help | about | project | experince | skill | contact | profile | clear</span>
+                        <hr>
+                    </div>
                     <div class="wrapper-text">
                         <p class="nameHeader">bunsengtri&#64;portfolio:~$ <span>welcome</span></p>
                         <p class="text-white m-1">Hi, I'm Bun Sengtri, a Lazy Developer</p>
                     </div>
-                    <div class="input-section">
+                    <div class="input-section overflow-hidden">
                         <p class="nameHeader">bunsengtri&#64;portfolio:~$&nbsp;</p>
                         <input type="text" autofocus [(ngModel)]="userInput" (input)="onInputChange()"
                             (keydown.enter)="executeCommand()" placeholder="Type a command..." class="command-input"
                             #commandInput>
                     </div>
-
-
                     <!-- Command Suggestions -->
                     @if (userInput.length >0 && suggestions.length ==0 ) { <h4
                         class="animate__animated animate__shakeX errorFound">{{commnadNotfound()}}
@@ -63,7 +61,7 @@
                     }
                     @if (suggestions.length > 0 && userInput.length > 0) {
                     <div class="suggestions animate__animated animate__slideInUp">
-                        <h4>Available Commands:</h4>
+                        <h4 class="fw-bold">Available Commands:</h4>
                         <div class="suggestion-item" *ngFor="let cmd of suggestions; let i = index"
                             (click)="selectCommand(cmd)" [style.animation-delay]="(i * 100) + 'ms'">
                             <strong>{{cmd.name}}</strong> - {{cmd.description}}
@@ -72,7 +70,6 @@
                     }@else {
 
                     }
-
                     <!-- Command Details -->
                     <div class="command-details fade-in" *ngIf="selectedCommand">
                         <h3>{{selectedCommand.name}}</h3>
@@ -80,16 +77,51 @@
                         <p><strong>Usage:</strong> <code>{{selectedCommand.usage}}</code></p>
                         <p><strong>Example:</strong> <code>{{selectedCommand.example}}</code></p>
                     </div>
-                    <!-- Output Area -->
-                    <div class="output fade-in" *ngIf="displayedOutput || isTyping">
-                        <div class="output-text" [class.typing]="isTyping">
+                    <div class="output fade-in" *ngIf="displayedOutput || isTyping || htmlOutput">
+                        <div *ngIf="displayedOutput && !(!isTyping && isHtmlOutput)" class="output-text"
+                            [class.typing]="isTyping">
                             {{displayedOutput}}
                             <span class="cursor" *ngIf="isTyping">|</span>
+                        </div>
+                        <!-- Show HTML version with clickable links after typewriter completes -->
+                        <div *ngIf="!isTyping && isHtmlOutput && htmlOutput" class="output-text html-output"
+                            [innerHTML]="htmlOutput">
+                        </div>
+                        <!-- Contact Form -->
+                        <div *ngIf="isContactFormVisible && !isTyping" class="contact-form-container">
+                            <h4>=== SEND ME A MESSAGE ===</h4>
+                            <form class="contact-form" (ngSubmit)="submitContactForm()">
+                                <div class="form-group">
+                                    <label for="contactName">Name *</label>
+                                    <input type="text" id="contactName" [(ngModel)]="contactForm.name"
+                                        name="contactName" class="form-input" placeholder="Your full name" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="contactEmail">Email *</label>
+                                    <input type="email" id="contactEmail" [(ngModel)]="contactForm.email"
+                                        name="contactEmail" class="form-input" placeholder="your.email@example.com"
+                                        required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="contactMessage">Message *</label>
+                                    <textarea id="contactMessage" [(ngModel)]="contactForm.message"
+                                        name="contactMessage" class="form-textarea" placeholder="Your message here..."
+                                        rows="5" required></textarea>
+                                </div>
+
+                                <div class="form-buttons">
+                                    <button type="submit" class="btn btn-primary" [disabled]="!isContactFormValid()">
+                                        <i class="fas fa-paper-plane"></i> Send Message
+                                    </button>
+                                    <button type="button" class="btn btn-secondary" (click)="cancelContactForm()">
+                                        <i class="fas fa-times"></i> Cancel
+                                    </button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
-</div>
