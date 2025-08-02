@@ -107,6 +107,143 @@ export class Portfolio implements AfterViewInit, OnInit {
   isContactFormVisible: boolean = false;
   commandNotFound = signal<string>('');
   message: string = `Welcome to Bun Sengtri's Portfolio Terminal!Type 'help' to see available commands.Type 'about' to learn more about me.`;
+  currentLanguage: 'en' | 'km' = 'en';
+
+  languageChange(): string[] {
+    const textMap: Record<'en' | 'km', string[]> = {
+      en: [
+        'help',
+        'about',
+        'project',
+        'experience',
+        'skill',
+        'contact',
+        'profile',
+        'clear',
+        'history',
+      ],
+      km: [
+        'ជំនួយ',
+        'អំពី',
+        'គម្រោង',
+        'បទពិសោធន៍',
+        'ជំនាញ',
+        'ទាក់ទង',
+        'ប្រវត្តិរូប',
+        'លុប',
+        'ប្រវត្តិ',
+      ],
+    };
+    return textMap[this.currentLanguage];
+  }
+
+  loading = signal<'loading' | 'active'>('loading');
+  checkClassLoading(): void {
+    setTimeout(() => {
+      this.loading.update((up) => (up === 'active' ? 'loading' : 'active'));
+    }, 300);
+  }
+  beforeCheck(): void {
+    setTimeout(() => {
+      this.loading.update((up) => (up === 'loading' ? 'active' : 'loading'));
+    }, 300);
+  }
+  zeroEnglish() {
+    const numberZero = {
+      en: '0',
+      km: '០',
+    };
+    return numberZero[this.currentLanguage];
+  }
+  oneEnglish() {
+    const numberOne = {
+      en: '1',
+      km: '១',
+    };
+    return numberOne[this.currentLanguage];
+  }
+  imglogo() {
+    const img = {
+      en: '/img/eng.webp',
+      km: '/img/khmer.webp',
+    };
+    return img[this.currentLanguage];
+  }
+
+  KhmerLanguaue() {
+    if (this.currentLanguage == 'en') {
+      setTimeout(() => {
+        this.currentLanguage = 'km';
+        this.typeText();
+        this.checkClassLoading();
+      }, 700);
+      this.beforeCheck();
+    } else {
+      setTimeout(() => {
+        this.currentLanguage = 'en';
+        this.checkClassLoading();
+      }, 700);
+      this.beforeCheck();
+      this.typeText();
+    }
+  }
+  ktriName() {
+    debugger;
+    const ktriName = {
+      en: this.fullText,
+      km: this.khmerText,
+    };
+    return ktriName[this.currentLanguage];
+  }
+  sofwareKhmer(): any {
+    const softwareName = {
+      en: 'software Developer',
+      km: 'អ្នកអភិវឌ្ឍន៍កម្មវិធី',
+    };
+    return softwareName[this.currentLanguage];
+  }
+  profilesInfo(): any {
+    const info = {
+      en: 'Call : Ktri',
+      km: 'ប៊ុន សេងទ្រី',
+    };
+    return info[this.currentLanguage];
+  }
+  textPro(): any {
+    const info = {
+      en: 'A Software Developer Who Build Innovative Solution with Code and Creativity.',
+      km: 'អ្នកបង្កើតកម្មវិធីដែលបង្កើតដំណោះស្រាយប្រកបដោយភាពច្នៃប្រឌិតជាមួយនឹងកូដ និងការច្នៃប្រឌិត',
+    };
+    return info[this.currentLanguage];
+  }
+  nameInterminal(): any {
+    const info = {
+      en: 'Hi, I am Bun Sengtri, a Lazy Developer',
+      km: 'សួស្តី ខ្ញុំឈ្មោះ ប៊ុន សេងទ្រី អ្នកអភិវឌ្ឍន៍ខ្ជិល',
+    };
+    return info[this.currentLanguage];
+  }
+  availableInterminal(): any {
+    const info = {
+      en: 'Type help to see available commands or start exploring!',
+      km: 'វាយ ជំនួយ ដើម្បីមើលពាក្យបញ្ជាដែលមាន ឬចាប់ផ្តើមរុករក!',
+    };
+    return info[this.currentLanguage];
+  }
+  massageInterminal(): any {
+    const info = {
+      en: 'Welcome to Bun Sengtri Portfolio Terminal! Type help to see available commands.Type about learn more about me.',
+      km: 'សូមស្វាគមន៍មកកាន់ស្ថានីយផតថលប៊ុនសេងទ្រី! វាយបញ្ចូលជំនួយដើម្បីមើលពាក្យបញ្ជាដែលមាន វាយអំពីស្វែងយល់បន្ថែមអំពីខ្ញុំ',
+    };
+    return info[this.currentLanguage];
+  }
+  Interminal(): any {
+    const info = {
+      en: 'bunsengtri@portfolio:~$ ',
+      km: '@ប៊ុនសេងទ្រី:~$ ',
+    };
+    return info[this.currentLanguage];
+  }
 
   // Command history
   commandHistory: CommandHistory[] = [];
@@ -131,6 +268,7 @@ export class Portfolio implements AfterViewInit, OnInit {
     // this.addWelcomeMessage();
   }
   fullText = 'Bun Sengtri';
+  khmerText = 'ប៊ុន សេងទ្រី';
   displayedText = '';
   currentIndex = 0;
 
@@ -140,13 +278,13 @@ export class Portfolio implements AfterViewInit, OnInit {
 
   typeText() {
     const typingSpeed = 100; // ms
-
-    if (this.currentIndex < this.fullText.length) {
-      this.displayedText += this.fullText[this.currentIndex];
+    if (this.currentIndex < this.ktriName().length) {
+      this.displayedText += this.ktriName()[this.currentIndex];
       this.currentIndex++;
       setTimeout(() => this.typeText(), typingSpeed);
     }
   }
+
   // Event Handlers
   @HostListener('document:keydown', ['$event'])
   onKeydown(event: KeyboardEvent): void {
