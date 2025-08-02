@@ -96,7 +96,7 @@ interface ContactForm {
   `,
   styleUrl: './portfolio.css',
 })
-export class Portfolio implements AfterViewInit {
+export class Portfolio implements AfterViewInit, OnInit {
   // UI State
   userInput: string = '';
   suggestions: Command[] = [];
@@ -130,7 +130,23 @@ export class Portfolio implements AfterViewInit {
     this.focusInput();
     // this.addWelcomeMessage();
   }
+  fullText = 'Bun Sengtri';
+  displayedText = '';
+  currentIndex = 0;
 
+  ngOnInit() {
+    this.typeText();
+  }
+
+  typeText() {
+    const typingSpeed = 100; // ms
+
+    if (this.currentIndex < this.fullText.length) {
+      this.displayedText += this.fullText[this.currentIndex];
+      this.currentIndex++;
+      setTimeout(() => this.typeText(), typingSpeed);
+    }
+  }
   // Event Handlers
   @HostListener('document:keydown', ['$event'])
   onKeydown(event: KeyboardEvent): void {

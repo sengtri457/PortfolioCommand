@@ -1,24 +1,21 @@
 <div class="container-fluid">
     <div class="terminal-containerr">
         <div class="terminal-header" data-aos="fade-down">
-            <h2 class="fw-bold">Bun Sengtri</h2>
+            <h2 class="fw-bold">{{displayedText}}</h2>
             <p class="fw-medium"><span>
                     Software Developer
                 </span>
             </p>
         </div>
-        <div class="row wraper-terminal">
+        <div class="row wraper-terminals ">
             <div class="col-lg-5 col-12 wraper-terminal d-lg-flex d-none">
                 <div class="wraper-termina p-4 " data-aos="zoom-in">
                     <div class="wrapper-pic m-auto">
-                        <!-- <video src="/img/Ktri.MOV" #hoverVideo muted playsinline preload="metadata"
-                            (mouseenter)="playVideo()" (mouseleave)="pauseVideo()"
-                            style="width: 100%; height: auto; object-fit: cover; cursor: pointer;">
-                        </video> -->
+
                         <img src="/img/pro.JPG" alt="" class="w-100">
                     </div>
                     <div class="wrapper-info text-center">
-                        <h2 class="fw-bolder mt-2">Call: Ktri</h2>
+                        <h2 class="fw-bolder mt-3">Call: Ktri</h2>
                         <p class="nameHeader">A Software Developer Who Build Innovative
                             Solution with Code and Creativity. </p>
                         <div class="wrapper-socail mt-2 m-auto text-center">
@@ -71,8 +68,8 @@
                                 <div class="output-text html-output" [innerHTML]="entry.htmlOutput"></div>
                                 } @else {
                                 <!-- Regular text output -->
-                                <div class="output-text" data-aos="fade-up">
-                                    <pre data-aos="fade-up">{{ entry.output }}</pre>
+                                <div class="output-text">
+                                    <pre>{{ entry.output }}</pre>
                                 </div>
                                 }
                             </div>
