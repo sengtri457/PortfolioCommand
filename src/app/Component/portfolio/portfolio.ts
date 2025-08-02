@@ -106,7 +106,6 @@ export class Portfolio implements AfterViewInit, OnInit {
   isTyping: boolean = false;
   isContactFormVisible: boolean = false;
   commandNotFound = signal<string>('');
-  message: string = `Welcome to Bun Sengtri's Portfolio Terminal!Type 'help' to see available commands.Type 'about' to learn more about me.`;
   currentLanguage: 'en' | 'km' = 'en';
 
   languageChange(): string[] {
@@ -174,7 +173,6 @@ export class Portfolio implements AfterViewInit, OnInit {
     if (this.currentLanguage == 'en') {
       setTimeout(() => {
         this.currentLanguage = 'km';
-        this.typeText();
         this.checkClassLoading();
       }, 700);
       this.beforeCheck();
@@ -184,16 +182,7 @@ export class Portfolio implements AfterViewInit, OnInit {
         this.checkClassLoading();
       }, 700);
       this.beforeCheck();
-      this.typeText();
     }
-  }
-  ktriName() {
-    debugger;
-    const ktriName = {
-      en: this.fullText,
-      km: this.khmerText,
-    };
-    return ktriName[this.currentLanguage];
   }
   sofwareKhmer(): any {
     const softwareName = {
@@ -268,7 +257,7 @@ export class Portfolio implements AfterViewInit, OnInit {
     // this.addWelcomeMessage();
   }
   fullText = 'Bun Sengtri';
-  khmerText = 'ប៊ុន សេងទ្រី';
+
   displayedText = '';
   currentIndex = 0;
 
@@ -278,8 +267,8 @@ export class Portfolio implements AfterViewInit, OnInit {
 
   typeText() {
     const typingSpeed = 100; // ms
-    if (this.currentIndex < this.ktriName().length) {
-      this.displayedText += this.ktriName()[this.currentIndex];
+    if (this.currentIndex < this.fullText.length) {
+      this.displayedText += this.fullText[this.currentIndex];
       this.currentIndex++;
       setTimeout(() => this.typeText(), typingSpeed);
     }
@@ -437,9 +426,6 @@ Type 'about' to learn more about me.`;
           htmlOutput: contactResult.html,
         };
 
-      case 'history':
-        return { output: this.getHistoryOutput(), isHtml: false };
-
       case 'clear':
         this.clearTerminal();
         return { output: '', isHtml: false };
@@ -546,19 +532,6 @@ Type 'about' to learn more about me.`;
 </div>`;
 
     return { text, html };
-  }
-
-  private getHistoryOutput(): string {
-    let output = '=== COMMAND HISTORY ===\n\n';
-    this.commandHistory.forEach((entry, index) => {
-      if (entry.command) {
-        output += `${index + 1}. ${entry.command.replace(
-          this.currentPrompt,
-          ''
-        )}\n`;
-      }
-    });
-    return output;
   }
 
   // Utility Methods
@@ -694,12 +667,6 @@ Type 'about' to learn more about me.`;
     );
   }
 
-  // Tracking function for Angular's trackBy
-  // trackByFn(index: number, item: CommandHistory): any {
-  //   return item.timestamp;
-  // }
-
-  // Data Access Methods (separated for better organization)
   private getAvailableCommands(): Command[] {
     return [
       {
