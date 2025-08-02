@@ -1,6 +1,6 @@
 <div class="container-fluid">
-    <div class="terminal-container">
-        <div class="terminal-header">
+    <div class="terminal-containerr">
+        <div class="terminal-header" data-aos="fade-down">
             <h2 class="fw-bold">Bun Sengtri</h2>
             <p class="fw-medium"><span>
                     Software Developer
@@ -9,7 +9,7 @@
         </div>
         <div class="row wraper-terminal">
             <div class="col-lg-5 col-12 wraper-terminal d-lg-flex d-none">
-                <div class="wraper-termina p-4 ">
+                <div class="wraper-termina p-4 " data-aos="zoom-in">
                     <div class="wrapper-pic m-auto">
                         <!-- <video src="/img/Ktri.MOV" #hoverVideo muted playsinline preload="metadata"
                             (mouseenter)="playVideo()" (mouseleave)="pauseVideo()"
@@ -23,15 +23,14 @@
                             Solution with Code and Creativity. </p>
                         <div class="wrapper-socail mt-2 m-auto text-center">
                             <ul class="example-2">
-                                @for (data of ListSocail; track $index) {
+                                @for (data of getSocialLinks(); track $index) {
                                 <li class="icon-content">
                                     <a href={{data.link}}>
                                         <div class="filled"></div>
-                                        <i class={{data.i}}></i>
+                                        <i class={{data.icon}}></i>
                                     </a>
-                                    <div class="tooltip">{{data.txt}}</div>
+                                    <div class="tooltip">{{data.name}}</div>
                                 </li>
-
                                 }
                             </ul>
                         </div>
@@ -39,89 +38,145 @@
                 </div>
             </div>
             <div class="col-lg-7 col-12">
-                <div class="terminal-body">
+                <div class="terminal-body" #terminalContainer data-aos="zoom-in-up">
                     <div class="command-provider">
-                        <span>help | about | project | experince | skill | contact | profile | clear</span>
+                        <span>help | about | project | experience | skill | contact | profile | clear | history</span>
                         <hr>
                     </div>
+
+                    <!-- Welcome Message -->
                     <div class="wrapper-text">
                         <p class="nameHeader">bunsengtri&#64;portfolio:~$ <span>welcome</span></p>
-                        <p class="text-white m-1">Hi, I'm Bun Sengtri, a Lazy Developer</p>
+                        <p class=" m-1">Hi, I'm Bun Sengtri, a Lazy Developer</p>
+                        <p class="text-white m-1">Type 'help' to see available commands or start exploring!</p>
+                        <p>{{message}}</p>
                     </div>
+
+                    <!-- Command History Display -->
+                    <div class="command-history">
+                        @for (entry of commandHistory; track entry.timestamp) {
+                        <div class="history-entry">
+                            <!-- Display the command that was executed -->
+                            @if (entry.command) {
+                            <div class="command-line">
+                                <p class="nameHeader mb-1">{{ entry.command }}</p>
+                            </div>
+                            }
+
+                            <!-- Display the output -->
+                            @if (entry.output) {
+                            <div class="command-output">
+                                <!-- HTML output for projects and contact -->
+                                @if (entry.isHtml && entry.htmlOutput) {
+                                <div class="output-text html-output" [innerHTML]="entry.htmlOutput"></div>
+                                } @else {
+                                <!-- Regular text output -->
+                                <div class="output-text" data-aos="fade-up">
+                                    <pre data-aos="fade-up">{{ entry.output }}</pre>
+                                </div>
+                                }
+                            </div>
+                            }
+                        </div>
+                        }
+                    </div>
+                    <!-- Contact Form (appears when contact command is used) -->
+                    @if (isContactFormVisible && !isTyping) {
+                    <div class="contact-form-container fade-in">
+                        <h4>=== SEND ME A MESSAGE ===</h4>
+                        <form class="contact-form" (ngSubmit)="submitContactForm()">
+                            <div class="form-group">
+                                <label for="contactName">Name *</label>
+                                <input type="text" id="contactName" [(ngModel)]="contactForm.name" name="contactName"
+                                    class="form-input" placeholder="Your full name" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="contactEmail">Email *</label>
+                                <input type="email" id="contactEmail" [(ngModel)]="contactForm.email"
+                                    name="contactEmail" class="form-input" placeholder="your.email@example.com"
+                                    required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="contactMessage">Message *</label>
+                                <textarea id="contactMessage" [(ngModel)]="contactForm.message" name="contactMessage"
+                                    class="form-textarea" placeholder="Your message here..." rows="5"
+                                    required></textarea>
+                            </div>
+
+                            <div class="form-buttons">
+                                <button type="submit" class="btn btn-primary" [disabled]="!isContactFormValid()">
+                                    <i class="fas fa-paper-plane"></i> Send Message
+                                </button>
+                                <button type="button" class="btn btn-secondary" (click)="cancelContactForm()">
+                                    <i class="fas fa-times"></i> Cancel
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    }
+                    <hr>
+                </div>
+
+                <!-- Current Input Section -->
+                <div class="current-input-section" data-aos="zoom-in-up">
                     <div class="input-section overflow-hidden">
                         <p class="nameHeader">bunsengtri&#64;portfolio:~$&nbsp;</p>
-                        <input type="text" autofocus [(ngModel)]="userInput" (input)="onInputChange()"
-                            (keydown.enter)="executeCommand()" placeholder="Type a command..." class="command-input"
-                            #commandInput>
+                        <input type="text" #commandInput [(ngModel)]="userInput" (input)="onInputChange()"
+                            [disabled]="isTyping" [placeholder]="isTyping ? 'Processing...' : 'Type a command...'"
+                            autocomplete="off" class="command-input">
+                        <!-- <span class="cursor" *ngIf="!isTyping">|</span> -->
                     </div>
+
                     <!-- Command Suggestions -->
-                    @if (userInput.length >0 && suggestions.length ==0 ) { <h4
-                        class="animate__animated animate__shakeX errorFound">{{commnadNotfound()}}
-                    </h4>
+                    @if (userInput.length > 0 && suggestions.length == 0 && userInput.trim()) {
+                    <h4 class="animate__animated animate__shakeX errorFound">{{commandNotFound()}}</h4>
                     }
+
                     @if (suggestions.length > 0 && userInput.length > 0) {
                     <div class="suggestions animate__animated animate__slideInUp">
                         <h4 class="fw-bold">Available Commands:</h4>
-                        <div class="suggestion-item" *ngFor="let cmd of suggestions; let i = index"
-                            (click)="selectCommand(cmd)" [style.animation-delay]="(i * 100) + 'ms'">
+                        @for (cmd of suggestions; track cmd.name; let i = $index) {
+                        <div class="suggestion-item" (click)="selectCommand(cmd)"
+                            [style.animation-delay]="(i * 100) + 'ms'">
                             <strong>{{cmd.name}}</strong> - {{cmd.description}}
                         </div>
+                        }
                     </div>
-                    }@else {
-
                     }
+
                     <!-- Command Details -->
-                    <div class="command-details fade-in" *ngIf="selectedCommand">
+                    @if (selectedCommand) {
+                    <div class="command-details fade-in">
                         <h3>{{selectedCommand.name}}</h3>
                         <p><strong>Description:</strong> {{selectedCommand.description}}</p>
                         <p><strong>Usage:</strong> <code>{{selectedCommand.usage}}</code></p>
                         <p><strong>Example:</strong> <code>{{selectedCommand.example}}</code></p>
                     </div>
-                    <div class="output fade-in" *ngIf="displayedOutput || isTyping || htmlOutput">
-                        <div *ngIf="displayedOutput && !(!isTyping && isHtmlOutput)" class="output-text"
-                            [class.typing]="isTyping">
-                            {{displayedOutput}}
-                            <span class="cursor" *ngIf="isTyping">|</span>
-                        </div>
-                        <!-- Show HTML version with clickable links after typewriter completes -->
-                        <div *ngIf="!isTyping && isHtmlOutput && htmlOutput" class="output-text html-output"
-                            [innerHTML]="htmlOutput">
-                        </div>
-                        <!-- Contact Form -->
-                        <div *ngIf="isContactFormVisible && !isTyping" class="contact-form-container">
-                            <h4>=== SEND ME A MESSAGE ===</h4>
-                            <form class="contact-form" (ngSubmit)="submitContactForm()">
-                                <div class="form-group">
-                                    <label for="contactName">Name *</label>
-                                    <input type="text" id="contactName" [(ngModel)]="contactForm.name"
-                                        name="contactName" class="form-input" placeholder="Your full name" required>
-                                </div>
+                    }
 
-                                <div class="form-group">
-                                    <label for="contactEmail">Email *</label>
-                                    <input type="email" id="contactEmail" [(ngModel)]="contactForm.email"
-                                        name="contactEmail" class="form-input" placeholder="your.email@example.com"
-                                        required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="contactMessage">Message *</label>
-                                    <textarea id="contactMessage" [(ngModel)]="contactForm.message"
-                                        name="contactMessage" class="form-textarea" placeholder="Your message here..."
-                                        rows="5" required></textarea>
-                                </div>
-
-                                <div class="form-buttons">
-                                    <button type="submit" class="btn btn-primary" [disabled]="!isContactFormValid()">
-                                        <i class="fas fa-paper-plane"></i> Send Message
-                                    </button>
-                                    <button type="button" class="btn btn-secondary" (click)="cancelContactForm()">
-                                        <i class="fas fa-times"></i> Cancel
-                                    </button>
-                                </div>
-                            </form>
+                    <!-- Typing Animation Display -->
+                    @if (displayedOutput && isTyping) {
+                    <div class="output fade-in">
+                        <div class="output-text typing">
+                            <p>
+                                {{displayedOutput}}
+                            </p>
+                            <span class="cursor">|</span>
                         </div>
+                    </div>
+                    }
+
+
+
+                    <!-- Scroll to bottom indicator -->
+                    <div class="scroll-indicator" *ngIf="commandHistory.length > 3">
+                        <small class="text-muted">Press Enter to execute command • Tab for autocomplete • Type 'clear'
+                            to reset</small>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>

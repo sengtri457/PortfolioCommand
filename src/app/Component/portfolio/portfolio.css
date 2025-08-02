@@ -1,4 +1,4 @@
-.terminal-container {
+.terminal-containerr {
     margin: 0px auto;
     background: #f2f2f2;
     background: linear-gradient(130deg, rgba(242, 242, 242, 0.54) 0%, rgba(65, 63, 63, 1) 12%, rgba(36, 34, 34, 1) 17%, rgba(0, 0, 0, 1) 100%);
@@ -46,16 +46,82 @@
     margin: 0;
 }
 
-
-
 .terminal-body {
-    padding: 20px;
+    padding: 20px 20px 0px 20px;
+    overflow-y: auto;
+    position: relative;
+}
+
+.terminal-body::-webkit-scrollbar {
+    width: 8px;
+}
+
+.terminal-body::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.terminal-body::-webkit-scrollbar-thumb {
+    background: #555;
+    border-radius: 4px;
+}
+
+.terminal-body::-webkit-scrollbar-thumb:hover {
+    background: #777;
+}
+
+/* Command History Styles */
+.command-history {
+    margin-bottom: 1rem;
+}
+
+.history-entry {
+    margin-bottom: 1.5rem;
+    animation: fadeInUp 0.3s ease-out;
+}
+
+.history-entry:last-child {
+    margin-bottom: 2rem;
+}
+
+.command-line {
+    margin-bottom: 0.5rem;
+}
+
+.command-output {
+    margin-left: 1rem;
+    padding-left: 1rem;
+    border-left: 2px solid var(--terminal-prompt);
+    margin-bottom: 1rem;
+}
+
+.command-output pre {
+    margin: 0;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-family: inherit;
+    background: transparent;
+    border: none;
+    padding: 0;
+    color: var(--terminal-text);
+}
+
+.command-output .output-text {
+    color: var(--terminal-text);
+}
+
+/* Current Input Section - Natural flow */
+.current-input-section {
+    position: relative;
+    background: transparent;
+    padding: 0.5rem 20px;
+    margin-top: 1rem;
 }
 
 .input-section {
     display: flex;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+    gap: 0.25rem;
 }
 
 .prompt {
@@ -72,10 +138,18 @@
     font-family: inherit;
     font-size: 16px;
     outline: none;
+    padding: 0;
 }
 
 .command-input::placeholder {
     color: #666;
+}
+
+.cursor {
+    animation: blink 1s infinite;
+    color: var(--terminal-text);
+    width: auto;
+    display: inline-block;
 }
 
 .suggestions {
@@ -83,7 +157,9 @@
     border: 1px solid var(--terminal-text);
     border-radius: 4px;
     padding: 15px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
+    max-height: 200px;
+    overflow-y: auto;
 }
 
 .suggestions h4 {
@@ -96,6 +172,7 @@
     cursor: pointer;
     border-radius: 3px;
     margin-bottom: 5px;
+    transition: all 0.2s ease;
 }
 
 .suggestion-item:hover {
@@ -106,8 +183,8 @@
     background: #2a2a2a;
     border: 1px solid #555;
     border-radius: 4px;
-    padding: 20px;
-    margin-bottom: 20px;
+    padding: 15px;
+    margin-bottom: 15px;
 }
 
 .command-details h3 {
@@ -132,7 +209,7 @@ code {
     border: 1px solid #555;
     border-radius: 4px;
     padding: 15px;
-    margin-top: 20px;
+    margin-bottom: 15px;
     overflow: hidden;
 }
 
@@ -140,6 +217,182 @@ code {
     white-space: pre-wrap;
     line-height: 1.4;
     overflow: hidden;
+    color: var(--terminal-text);
+    transition: all 0.4s ease-in-out;
+}
+
+.html-output {
+    color: var(--terminal-text);
+}
+
+.html-output h3,
+.html-output h4 {
+    color: var(--terminal-prompt);
+    margin: 1rem 0 0.5rem 0;
+}
+
+.html-output p {
+    margin: 0.5rem 0;
+    line-height: 1.5;
+}
+
+.html-output a {
+    color: #4a9eff;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.html-output a:hover {
+    color: #66b3ff;
+    text-decoration: underline;
+}
+
+.project-item {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: rgba(42, 42, 42, 0.3);
+    border-radius: 4px;
+    border-left: 3px solid var(--terminal-prompt);
+}
+
+.contact-container {
+    padding: 1rem;
+    background: rgba(42, 42, 42, 0.3);
+    border-radius: 4px;
+}
+
+.contact-info p {
+    margin: 0.5rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.contact-icon {
+    width: 16px;
+    color: var(--terminal-prompt);
+}
+
+.contact-link {
+    color: #4a9eff;
+    text-decoration: none;
+}
+
+.contact-link:hover {
+    color: #66b3ff;
+    text-decoration: underline;
+}
+
+/* Contact Form Styles */
+.contact-form-container {
+    background: #2a2a2a;
+    border: 1px solid #555;
+    border-radius: 4px;
+    padding: 20px;
+    margin-top: 15px;
+    animation: fadeInUp 0.4s ease-out;
+}
+
+.contact-form-container h4 {
+    color: var(--terminal-prompt);
+    margin: 0 0 20px 0;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    color: var(--terminal-text);
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-input,
+.form-textarea {
+    width: 100%;
+    padding: 10px;
+    background: #1a1a1a;
+    border: 1px solid #555;
+    border-radius: 3px;
+    color: var(--terminal-text);
+    font-family: inherit;
+    font-size: 14px;
+    resize: vertical;
+    box-sizing: border-box;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+    outline: none;
+    border-color: var(--terminal-prompt);
+    box-shadow: 0 0 0 2px rgba(0, 255, 65, 0.2);
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+    color: #666;
+}
+
+.form-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    font-family: inherit;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.btn-primary {
+    background: var(--terminal-prompt);
+    color: #000;
+}
+
+.btn-primary:hover:not(:disabled) {
+    background: #00cc33;
+    transform: translateY(-1px);
+}
+
+.btn-primary:disabled {
+    background: #555;
+    color: #999;
+    cursor: not-allowed;
+}
+
+.btn-secondary {
+    background: #666;
+    color: var(--terminal-text);
+}
+
+.btn-secondary:hover {
+    background: #777;
+    transform: translateY(-1px);
+}
+
+/* Scroll indicator */
+.scroll-indicator {
+    text-align: center;
+    padding: 10px 0;
+    border-top: 1px solid #333;
+    margin-top: 15px;
+}
+
+.scroll-indicator small {
+    color: #666;
+    font-size: 12px;
 }
 
 .wrapper-pic {
@@ -150,14 +403,9 @@ code {
     border: 1px;
 }
 
-.cursor {
-    animation: blink 1s infinite;
-    color: var(--terminal-text);
-    width: 20px;
-}
-
 .errorFound {
     color: var(--terminal-error);
+    animation: shake 0.5s ease-in-out;
 }
 
 @keyframes blink {
@@ -170,6 +418,34 @@ code {
     51%,
     100% {
         opacity: 0;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes shake {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-5px);
+    }
+
+    75% {
+        transform: translateX(5px);
     }
 }
 
@@ -188,9 +464,12 @@ code {
     transition: all 0.2s ease;
 }
 
-
 .animate__slideInUp {
-    --animation-duration: 0.5s;
+    --animation-duration: 0.8s;
+}
+
+.fade-in {
+    animation: fadeInUp 0.3s ease-out;
 }
 
 .socail {
@@ -269,4 +548,36 @@ ul {
     height: 30px;
 }
 
-/* Add these styles to your existing styles in the component */
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .terminal-container {
+        min-height: 95vh;
+    }
+
+    .terminal-body {
+        padding: 20px 20px 0px 20px;
+    }
+
+
+
+    .command-input {
+        font-size: 14px;
+    }
+
+    .suggestions {
+        padding: 10px;
+    }
+
+    .contact-form-container {
+        padding: 15px;
+    }
+
+    .form-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .btn {
+        justify-content: center;
+    }
+}

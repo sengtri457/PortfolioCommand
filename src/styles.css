@@ -14,8 +14,24 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     background-color: black;
+}
+
+h2 {
+    font-size: clamp(1.5rem, 5vw, 2rem);
+}
+
+p {
+    font-size: clamp(0.8rem, 3vw, 1rem);
+}
+
+span {
+    font-size: clamp(0.8rem, 3vw, 1rem);
 }
 
 .projects-container {
@@ -167,16 +183,13 @@ body {
 
 .contact-container h3 {
     color: #00ff00;
-    margin-bottom: 1rem;
     font-size: 1.2rem;
+    margin: 0;
 }
 
-.contact-info {
-    margin-bottom: 1rem;
-}
 
 .contact-info p {
-    margin: 0.5rem 0;
+
     display: flex;
     align-items: center;
 }
