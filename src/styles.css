@@ -34,6 +34,260 @@ span {
     font-size: clamp(0.8rem, 3vw, 1rem);
 }
 
+/* Terminal Container */
+.terminal-containerr {
+    margin: 0 auto;
+    color: var(--terminal-text);
+    font-family: 'Courier New', monospace;
+    overflow: hidden;
+    border: 1px solid var(--terminal-text);
+    border-top: none;
+    box-shadow: 7px 7px 0 #029802;
+    min-height: 90vh;
+}
+
+.wraper-terminal {
+    border-right: 1px solid var(--terminal-text);
+    min-height: 80vh;
+}
+
+.wraper-terminals {
+    position: relative;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.6), #00000080, rgba(0, 0, 0, 0.6)), url(/img/sm.avif);
+    background-size: cover;
+    background-repeat: no-repeat;
+    backdrop-filter: blur(10px);
+}
+
+.wraper-terminals::after {
+    position: absolute;
+    filter: blur(3px);
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    content: "";
+    backdrop-filter: blur(5px);
+    z-index: -1;
+}
+
+/* Terminal Header */
+.terminal-header {
+    padding: 15px 20px;
+    border: 1px solid var(--terminal-text);
+    border-top: none;
+    background: #000;
+}
+
+.terminal-header p,
+.terminal-header h2 {
+    margin: 0;
+    color: var(--terminal-text);
+}
+
+.nameHeader {
+    color: var(--terminal-prompt);
+    margin: 2px;
+}
+
+.nameHeader span,
+.terminal-header p span {
+    color: #fff;
+}
+
+/* Terminal Body */
+.terminal-body {
+    padding: 20px 20px 0;
+    overflow-y: auto;
+    position: relative;
+}
+
+.terminal-body::-webkit-scrollbar {
+    width: 8px;
+}
+
+.terminal-body::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.terminal-body::-webkit-scrollbar-thumb {
+    background: #555;
+    border-radius: 4px;
+}
+
+.terminal-body::-webkit-scrollbar-thumb:hover {
+    background: #777;
+}
+
+.history-entry {
+    margin-bottom: 1.5rem;
+    animation: fadeInUp 0.3s ease-out;
+}
+
+.history-entry:last-child {
+    margin-bottom: 2rem;
+}
+
+.command-line {
+    margin-bottom: 0.5rem;
+}
+
+.command-output {
+    margin: 0 0 1rem 1rem;
+    padding-left: 1rem;
+    border-left: 2px solid var(--terminal-prompt);
+}
+
+.command-output pre {
+    margin: 0;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-family: inherit;
+    background: transparent;
+    border: none;
+    padding: 0;
+    color: var(--terminal-text);
+}
+
+.command-output .output-text {
+    color: var(--terminal-text);
+}
+
+/* Input Section */
+.current-input-section {
+    position: relative;
+    background: transparent;
+    padding: 0.5rem 20px;
+    margin-top: 1rem;
+}
+
+.input-section {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    gap: 0.25rem;
+}
+
+.prompt {
+    color: var(--terminal-text);
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.command-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: var(--terminal-text);
+    font-family: inherit;
+    font-size: 16px;
+    outline: none;
+    padding: 0;
+}
+
+.command-input::placeholder {
+    color: #666;
+}
+
+.cursor {
+    animation: blink 1s infinite;
+    color: var(--terminal-text);
+    display: inline-block;
+}
+
+/* UI Components */
+.suggestions,
+.command-details,
+.output {
+    background: #2a2a2a;
+    border: 1px solid var(--terminal-text);
+    border-radius: 4px;
+    padding: 15px;
+    margin-bottom: 15px;
+    transition: all 0.3s ease-in-out;
+}
+
+.command-details {
+    border-color: #555;
+}
+
+.suggestions {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.suggestions h4 {
+    margin: 0 0 10px 0;
+    color: #fff;
+}
+
+.suggestion-item {
+    padding: 8px;
+    cursor: pointer;
+    border-radius: 3px;
+    margin-bottom: 5px;
+    transition: all 0.2s ease;
+}
+
+.suggestion-item:hover {
+    background: #3a3a3a;
+}
+
+.command-details h3 {
+    margin-top: 0;
+    color: var(--terminal-text);
+}
+
+.command-details p {
+    margin: 10px 0;
+    line-height: 1.5;
+}
+
+code {
+    background: #1a1a1a;
+    padding: 2px 6px;
+    border-radius: 3px;
+    color: #ff6b6b;
+}
+
+.output {
+    background: #1a1a1a;
+    border-color: #555;
+    overflow: hidden;
+}
+
+.output-text,
+.html-output {
+    white-space: pre-wrap;
+    line-height: 1.4;
+    color: var(--terminal-text);
+    transition: all 0.4s ease-in-out;
+}
+
+.html-output h3,
+.html-output h4 {
+    color: var(--terminal-prompt);
+    margin: 1rem 0 0.5rem 0;
+}
+
+.html-output p {
+    margin: 0.5rem 0;
+    line-height: 1.5;
+}
+
+.html-output a,
+.contact-link {
+    color: #4a9eff;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.html-output a:hover,
+.contact-link:hover {
+    color: #66b3ff;
+    text-decoration: underline;
+}
+
 .projects-container {
     font-family: 'Courier New', monospace;
     line-height: 1;
