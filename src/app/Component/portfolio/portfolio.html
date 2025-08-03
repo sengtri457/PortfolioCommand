@@ -29,7 +29,7 @@
                         <p class="nameHeader animate__animated animate__backInUp">{{textPro()}}</p>
                         <div class="wrapper-socail mt-2 m-auto text-center animate__animated animate__backInUp">
                             <ul class="example-2">
-                                @for (data of getSocialLinks(); track $index) {
+                                @for (data of getLink; track $index) {
                                 <li class="icon-content">
                                     <a href={{data.link}}>
                                         <div class="filled"></div>
@@ -47,14 +47,18 @@
                 <div class="terminal-body animate__animated animate__lightSpeedInRight" #terminalContainer>
                     <div class=" command-provider">
                         @for (item of languageChange(); track $index) {
-                        <span>{{item}} | </span>
-                        }
-                        <hr>
+                        @if ($index >= 0 && $index <7) { <span>{{item}} | </span>
+                            }
+                            @else{
+                            <span>{{item}}</span>
+                            }
+                            }
+                            <hr>
                     </div>
 
                     <!-- Welcome Message -->
                     <div class="wrapper-text">
-                        <p class="nameHeader">{{Interminal()}}<span>welcome</span></p>
+                        <p class="nameHeader">{{Interminal()}}<span>{{WelcomeChange()}}</span></p>
                         <p class=" m-1">{{nameInterminal()}}</p>
                         <p class="text-white m-1">{{availableInterminal()}}</p>
                         <p>{{massageInterminal()}}</p>
@@ -201,5 +205,24 @@
             <div class="glow"></div>
         </div>
 
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div *ngIf="showCloseConfirmation" class="modal-backdrop">
+        <div class="modal-content">
+            <div class="wrapper-img">
+                <img src="/img/sure.webp" alt="" class="w-100 h-100">
+            </div>
+            <h2 class="fw-bold mt-2">Confirm Exit</h2>
+            <p>Are you sure you want to close the application?</p>
+            <div class="modal-buttons">
+                <button class="btn  btn-cancel" (click)="showCloseConfirmation = false">
+                    Cancel
+                </button>
+                <button class="btn btn-danger" (click)="closeApplication()">
+                    Yes, Close
+                </button>
+            </div>
+        </div>
     </div>
 </div>

@@ -404,4 +404,9 @@ ul {
     .btn {
         justify-content: center;
     }
+
+    .btn-khmer {
+        width: 30px;
+        height: 30px;
+    }
 }
