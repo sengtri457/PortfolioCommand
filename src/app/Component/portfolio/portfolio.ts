@@ -623,7 +623,7 @@ Type 'about' to learn more about me.`;
   hideNav() {
     return {
       navbarClass: this.isActive ? 'phone-view-wrapper' : 'active',
-      iconClass: this.isAc ? 'fa-solid fa-bars' : 'fa-solid fa-xmark',
+      iconClass: this.isAc ? 'bi bi-list' : 'bi bi-x-lg',
     };
   }
   clickNav() {

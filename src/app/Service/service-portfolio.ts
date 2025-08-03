@@ -208,22 +208,22 @@ export class ServicePortfolio {
   getSocialLinks(): Social[] {
     return [
       {
-        icon: 'fa-brands fa-github',
+        icon: 'bi bi-github',
         link: 'https://github.com/sengtri457',
         name: 'GitHub',
       },
       {
-        icon: 'fa-brands fa-instagram',
+        icon: 'bi bi-instagram',
         link: 'https://www.instagram.com/extra_s4ngtr1/',
         name: 'Instagram',
       },
       {
-        icon: 'fa-brands fa-linkedin',
+        icon: 'bi bi-linkedin',
         link: 'https://www.linkedin.com/in/bun-sengtri-b71633357/',
         name: 'LinkedIn',
       },
       {
-        icon: 'fa-brands fa-facebook',
+        icon: 'bi bi-facebook',
         link: 'https://web.facebook.com/sxng.tri457',
         name: 'Facebook',
       },
