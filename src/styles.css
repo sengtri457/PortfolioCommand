@@ -355,6 +355,19 @@ code {
     margin-bottom: 0;
 }
 
+/* //menu */
+
+
+.btn-menu {
+    font-size: clamp(1.3rem, 5vw, 2rem);
+    border: none;
+    backdrop-filter: blur(20px);
+    color: var(--terminal-text);
+
+
+}
+
+
 /* Add these styles to your existing styles in the component */
 
 .projects-container {
@@ -532,7 +545,6 @@ code {
     border-radius: 3px;
     cursor: pointer;
     font-family: 'Courier New', monospace;
-    font-size: 0.9rem;
     transition: all 0.3s ease;
     display: flex;
     align-items: center;
@@ -617,6 +629,65 @@ code {
     margin-top: 1rem;
 }
 
+@keyframes blink {
+
+    0%,
+    50% {
+        opacity: 1;
+    }
+
+    51%,
+    100% {
+        opacity: 0;
+    }
+}
+
+.typing {
+    position: relative;
+}
+
+.cursor {
+    animation: blink 1s infinite;
+}
+
+.suggestions,
+.command-details,
+.output {
+    transition: all 0.3s ease-in-out;
+}
+
+.suggestion-item {
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.suggestion-item:hover {
+    background-color: #2a2a2a;
+}
+
+.command-history {
+    margin-bottom: 1rem;
+}
+
+.command-prompt {
+    color: #00ff00;
+    font-weight: bold;
+}
+
+.command-output {
+    margin: 0.5rem 0;
+    white-space: pre-wrap;
+}
+
+.terminal-container {
+    background: #1a1a1a;
+    color: #00ff00;
+    font-family: 'Courier New', monospace;
+    padding: 1rem;
+    border-radius: 5px;
+    max-height: 500px;
+    overflow-y: auto;
+}
 
 .btn-danger {
     background: var(--terminal-text);
@@ -637,4 +708,20 @@ code {
     background: transparent;
     color: #dc3545;
     border: 2px solid #dc3545;
+}
+
+
+.phone-view-wrapper {
+    width: 100%;
+    height: 100%;
+    transition: all 0.4s ease-in-out;
+    left: 0;
+    backdrop-filter: blur(20px);
+    opacity: 0;
+    visibility: hidden;
+}
+
+.active {
+    opacity: 1;
+    visibility: visible;
 }

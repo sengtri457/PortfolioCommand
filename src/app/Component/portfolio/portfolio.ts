@@ -18,58 +18,6 @@ import { Router } from '@angular/router';
   selector: 'app-portfolio',
   imports: [FormsModule, CommonModule],
   templateUrl: './portfolio.html',
-  styles: `
-  
-    @keyframes blink {
-      0%, 50% { opacity: 1; }
-      51%, 100% { opacity: 0; }
-    }
-
-    .typing {
-      position: relative;
-    }
-
-    .cursor {
-      animation: blink 1s infinite;
-    }
-
-    .suggestions, .command-details, .output {
-      transition: all 0.3s ease-in-out;
-    }
-
-    .suggestion-item {
-      transition: all 0.2s ease;
-      cursor: pointer;
-    }
-
-    .suggestion-item:hover {
-      background-color: #2a2a2a;
-    }
-
-    .command-history {
-      margin-bottom: 1rem;
-    }
-
-    .command-prompt {
-      color: #00ff00;
-      font-weight: bold;
-    }
-
-    .command-output {
-      margin: 0.5rem 0;
-      white-space: pre-wrap;
-    }
-
-    .terminal-container {
-      background: #1a1a1a;
-      color: #00ff00;
-      font-family: 'Courier New', monospace;
-      padding: 1rem;
-      border-radius: 5px;
-      max-height: 500px;
-      overflow-y: auto;
-    }
-  `,
   styleUrl: './portfolio.css',
 })
 export class Portfolio implements AfterViewInit, OnInit {
@@ -83,7 +31,7 @@ export class Portfolio implements AfterViewInit, OnInit {
   isContactFormVisible: boolean = false;
   commandNotFound = signal<string>('');
   currentLanguage: 'en' | 'km' = 'en';
-
+  language = signal('English');
   Rout = inject(Router);
 
   //injection Services
@@ -109,6 +57,7 @@ export class Portfolio implements AfterViewInit, OnInit {
         'contact',
         'profile',
         'clear',
+        'Exit',
       ],
       km: [
         'ជំនួយ',
@@ -119,6 +68,8 @@ export class Portfolio implements AfterViewInit, OnInit {
         'ទាក់ទង',
         'ប្រវត្តិរូប',
         'លុប',
+        'លុប',
+        'ចាកចេញ',
       ],
     };
     return textMap[this.currentLanguage];
@@ -139,14 +90,16 @@ export class Portfolio implements AfterViewInit, OnInit {
     if (this.currentLanguage == 'en') {
       setTimeout(() => {
         this.currentLanguage = 'km';
+        this.language.set('ភាសាខ្មែរ');
         this.checkClassLoading();
-      }, 700);
+      }, 1000);
       this.beforeCheck();
     } else {
       setTimeout(() => {
         this.currentLanguage = 'en';
+        this.language.set('English');
         this.checkClassLoading();
-      }, 700);
+      }, 1000);
       this.beforeCheck();
     }
   }
@@ -664,5 +617,17 @@ Type 'about' to learn more about me.`;
       this.contactForm.email.trim() &&
       this.contactForm.message.trim()
     );
+  }
+  isActive = true;
+  isAc = true;
+  hideNav() {
+    return {
+      navbarClass: this.isActive ? 'phone-view-wrapper' : 'active',
+      iconClass: this.isAc ? 'fa-solid fa-bars' : 'fa-solid fa-xmark',
+    };
+  }
+  clickNav() {
+    this.isActive = !this.isActive;
+    this.isAc = !this.isAc;
   }
 }

@@ -10,13 +10,18 @@
                     </p>
                 </div>
                 <div class="col-3 d-flex justify-content-end">
-                    <button class="btn btn-primary btn-khmer position-relative" (click)="KhmerLanguaue()"><img
-                            src={{imglogo()}} alt="" class="w-100 h-100"></button>
+                    <button class="btn btn-primary btn-khmer position-relative d-lg-block d-none"
+                        (click)="KhmerLanguaue()"><img src={{imglogo()}} alt="" class="w-100 h-100"></button>
+                    <button class="btn  btn-menu d-lg-none d-block" (click)="clickNav()"><i
+                            [ngClass]="hideNav().iconClass"></i></button>
                 </div>
             </div>
 
+
+
+
         </div>
-        <div class="row wraper-terminals ">
+        <div class="row wraper-terminals  position-relative ">
             <div class="col-lg-5 col-12 wraper-terminal d-lg-flex d-none">
                 <div class="wraper-termina p-4 ">
                     <div class="wrapper-pic m-auto" data-aos="zoom-in">
@@ -47,7 +52,7 @@
                 <div class="terminal-body animate__animated animate__lightSpeedInRight" #terminalContainer>
                     <div class=" command-provider">
                         @for (item of languageChange(); track $index) {
-                        @if ($index >= 0 && $index <7) { <span>{{item}} | </span>
+                        @if ($index >= 0 && $index <8) { <span>{{item}} | </span>
                             }
                             @else{
                             <span>{{item}}</span>
@@ -189,6 +194,38 @@
                     </div>
                 </div>
             </div>
+            <div class="phone-view-wrapper position-absolute top-0" [ngClass]="hideNav().navbarClass">
+                <div class="wraper-termina p-4 ">
+                    <div class="wrapper-pic m-auto" data-aos="zoom-in">
+
+                        <img src="/img/pro.JPG" alt="" class="w-100">
+                    </div>
+                    <div class="wrapper-info text-center">
+
+                        <h2 class="fw-bolder mt-3 animate__animated animate__backInUp">{{profilesInfo()}}</h2>
+                        <p class="nameHeader animate__animated animate__backInUp">{{textPro()}}</p>
+                        <div class="wrapper-socail mt-2 m-auto text-center animate__animated animate__backInUp">
+                            <ul class="example-2">
+                                @for (data of getLink; track $index) {
+                                <li class="icon-content">
+                                    <a href={{data.link}}>
+                                        <div class="filled"></div>
+                                        <i class={{data.icon}}></i>
+                                    </a>
+                                    <div class="tooltip">{{data.name}}</div>
+                                </li>
+                                }
+                            </ul>
+                            <div class="wrapper-khmer m-auto text-center">
+                                <span>{{language()}} </span>
+                                <button class="btn btn-primary btn-khmer position-relative d-lg-none d-inline-block"
+                                    (click)="KhmerLanguaue()"><img src={{imglogo()}} alt=""
+                                        class="w-100 h-100"></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="loading" [ngClass]="loading()">
@@ -202,6 +239,8 @@
             <div class="digit">{{zeroEnglish()}}</div>
             <div class="digit">{{zeroEnglish()}}</div>
             <div class="digit">{{oneEnglish()}}</div>
+            <div class="digit">{{zeroEnglish()}}</div>
+
             <div class="glow"></div>
         </div>
 

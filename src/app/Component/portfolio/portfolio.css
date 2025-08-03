@@ -89,7 +89,6 @@
     border: none;
     border-radius: 3px;
     font-family: inherit;
-    font-size: 14px;
     cursor: pointer;
     transition: all 0.2s ease;
     display: flex;
@@ -408,5 +407,18 @@ ul {
     .btn-khmer {
         width: 30px;
         height: 30px;
+    }
+
+    .wrapper-pic {
+        width: 30%;
+    }
+
+    .example-2 .icon-content a {
+        width: 30px;
+        height: 30px;
+    }
+
+    .example-2 .icon-content:hover .tooltip {
+        top: -5px;
     }
 }
