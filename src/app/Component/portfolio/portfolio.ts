@@ -14,6 +14,7 @@ import 'animate.css';
 import { Command, CommandHistory, ContactForm } from '../../models/item';
 import { ServicePortfolio } from '../../Service/service-portfolio';
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-portfolio',
   imports: [FormsModule, CommonModule],
