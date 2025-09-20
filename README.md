@@ -1,59 +1,91 @@
-# Portfolio
+# Bun Sengtri Portfolio Terminal Guide
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.0.0.
+Welcome to my interactive terminal-style portfolio! This guide will help you navigate and explore my work as a Software Developer.
 
-## Development server
+## Getting Started
 
-To start a local development server, run:
+When you first visit my portfolio, you'll see a terminal interface with a welcome message. The terminal shows:
+- My name: **Bun Sengtri**
+- My role: **Software Developer** 
+- A command prompt: `bunsengtri@portfolio:~$`
 
-```bash
-ng serve
-```
+## Available Commands
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+You can explore my portfolio by typing these commands in the terminal:
 
-## Code scaffolding
+### Navigation Commands
+- `help` - Shows all available commands
+- `about` - Learn more about me and my background
+- `project` - View my projects and development work
+- `experience` - See my professional experience
+- `skill` - Check out my technical skills
+- `contact` - Get my contact information
+- `profile` - View my complete profile
+- `clear` - Clear the terminal screen
+- `exit` - Exit the terminal
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+### How to Use Commands
+1. Type any command from the list above
+2. Press Enter to execute
+3. The terminal will display the relevant information
+4. Use `clear` to clean the screen when needed
+5. Type `help` anytime if you need to see the command list again
 
-```bash
-ng generate component component-name
-```
+## Navigation Tips
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+- **Start with `help`**: If you're unsure what to do, type `help` to see all available options
+- **Explore systematically**: Try commands like `about`, `skill`, `experience`, and `project` to get a complete picture
+- **Use `clear`**: Keep your screen clean by using the `clear` command between sections
+- **Interactive experience**: This isn't just a static website - interact with it like a real terminal!
 
-```bash
-ng generate --help
-```
+## What You'll Find
 
-## Building
+### About Me
+Learn about my background as a developer who builds innovative solutions with code and creativity.
 
-To build the project run:
+### Projects  
+Explore the applications and solutions I've built, including technical details and technologies used.
 
-```bash
-ng build
-```
+### Experience
+Review my professional journey and the roles I've held in software development.
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+### Skills
+Discover my technical expertise across different programming languages, frameworks, and tools.
 
-## Running unit tests
+### Contact
+Find multiple ways to reach out to me for opportunities or collaboration.
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+## Special Features
 
-```bash
-ng test
-```
+- **Terminal Authentication**: The interface mimics a real Linux/Unix terminal experience
+- **Command History**: Navigate through commands like you would in a real terminal
+- **Responsive Design**: Works on both desktop and mobile devices
+- **Social Links**: Quick access to my GitHub, LinkedIn, Instagram, and Facebook profiles
 
-## Running end-to-end tests
+## Contact Information
 
-For end-to-end (e2e) testing, run:
+If you'd like to connect or learn more about my work:
+- **GitHub**: Available through the social links
+- **LinkedIn**: Professional networking and career information  
+- **Instagram**: Personal updates and behind-the-scenes content
+- **Facebook**: General social presence
 
-```bash
-ng e2e
-```
+Use the `contact` command in the terminal for direct contact information.
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## Tips for Best Experience
 
-## Additional Resources
+1. **Take your time**: Explore each section thoroughly
+2. **Try all commands**: Each command reveals different aspects of my work and personality
+3. **Think like a developer**: The terminal format reflects how I work daily
+4. **Mobile friendly**: The interface works well on phones and tablets too
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## Troubleshooting
+
+- **Command not working?**: Make sure you're typing the exact command names listed above
+- **Screen cluttered?**: Use the `clear` command to start fresh
+- **Lost?**: Type `help` to see all available options again
+- **Want to start over?**: Use `clear` and then `help` to begin again
+
+---
+
+**Ready to explore?** Start by typing `help` in the terminal to begin your journey through my portfolio!
